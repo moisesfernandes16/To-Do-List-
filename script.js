@@ -1,20 +1,21 @@
 const localStoragekey = 'to-do-list-ma'
 const input = document.getElementById('inputNewTask')
 
-function validadeIfExistNewTask(value) {
+function validadeIfExistNewTask() {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
-    if (!value) return false
-    const normalized = value.trim().toLowerCase()
-    return values.some(x => x.name.trim().toLowerCase() === normalized)
+    let inputValue = document.getElementById('inputNewTask').value
+    let input = document.getElementById('inputNewTask')
+    let exists = values.find(x => x.name == inputValue)
+    return !exists ? false : true
 }
 
 function newTask() {
-    const inputEl = document.getElementById("inputNewTask")
-    inputEl.style.border = ''
+    let input = document.getElementById("inputNewTask")
+    input.style.border = ''
 
     // validação
-    if (!inputEl.value || !inputEl.value.trim()) {
-        inputEl.style.border = '1px solid red'
+    if (!input.value) {
+        input.style.border = '1px solid red'
         alert("Digite o que você quer adicionar na sua lista")
     }
     else if (validadeIfExistNewTask()) {
@@ -37,12 +38,13 @@ function showValues() {
     list.innerHTML = ''
     for (let i = 0; i < values.length; i++)
          {
-        list.innerHTML += `<li>${values[i].name}<button id="btnOk" onclick='removeItem(${i})'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+        list.innerHTML += `<li>"${values[i].name}"<button id="btnOk" onclick='removeItem()'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
   <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-</svg></button></li>`
+</svg></button>
+</li>`
     }
 }
-function removeItem(index) {
+function removeItem(data) {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
     let index = values.findIndex(x => x.name == data)
     values.splice(index, 1)
