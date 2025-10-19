@@ -106,7 +106,9 @@ body {
     align-items: center;
     cursor: pointer;
     transition: .4s;
-    
+    position: absolute;
+    left: 60%;
+
 }
 
 #btnOk:hover {
@@ -124,12 +126,38 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: .4s; 
-    
+    transition: .4s;
+    position: absolute;
+    left: 67%;
 }
+
 #btnEdit:hover {
     background-color: var(--color-gray2);
 }
-li{
-    height:60px;
+
+li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 298px;
+    height: 60px;
+}
+
+@media (max-width: 400px) {
+    li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 198px;
+        height: 60px;
+    }
+
+    #to-do-list li {
+        list-style-type: none;
+        font-size: 1.4rem;
+        text-transform: capitalize;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
