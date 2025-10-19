@@ -74,7 +74,7 @@ body {
     font-size: 1.4rem;
     text-transform: capitalize;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -106,8 +106,6 @@ body {
     align-items: center;
     cursor: pointer;
     transition: .4s;
-    position: absolute;
-    left: 55.75%;
     
 }
 
@@ -127,8 +125,7 @@ body {
     align-items: center;
     cursor: pointer;
     transition: .4s; 
-    position: absolute;
-    left: 80%;
+    
 }
 #btnEdit:hover {
     background-color: var(--color-gray2);

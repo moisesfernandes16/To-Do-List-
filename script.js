@@ -1,5 +1,4 @@
-// clicar na task escrita  para alterar o texto []  
-// ao clicar no botao de editar, o texto vai para o inputnewtask e depois ele edita a task selecionada []
+// ao editar a task se ela não for editada ela é removida da lista, e precisa voltar quando não for editada 
 
 const localStoragekey = 'to-do-list-ma'
 const input = document.getElementById('inputNewTask')
