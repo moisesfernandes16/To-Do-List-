@@ -76,6 +76,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 #to-do-list li:hover {
@@ -148,7 +149,7 @@ li {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 198px;
+        max-width: 298px;
         height: 60px;
     }
 
