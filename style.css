@@ -139,7 +139,11 @@ li {
     flex-wrap: wrap;
 }
 
-@media (max-width: 370px) {
+@media (max-width: 320px) {
+    ul{
+        display: flex;
+
+    }
     li {
         white-space: nowrap;
         overflow: hidden;
