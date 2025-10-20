@@ -121,8 +121,8 @@ body {
     align-items: center;
     cursor: pointer;
     transition: .4s;
-    position: relative;
-    left: 95%;
+    position: absolute;
+    left: 75%;
 
 }
 
