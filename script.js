@@ -1,5 +1,5 @@
-// ao editar a task se ela não for editada ela é removida da lista, e precisa voltar quando não for editada 
-
+let editingIndex = null 
+let editingValue = ''
 const localStoragekey = 'to-do-list-ma'
 const input = document.getElementById('inputNewTask')
 
@@ -10,30 +10,66 @@ function validadeIfExistNewTask() {
     let exists = values.find(x => x.name == inputValue)
     return !exists ? false : true
 }
-
 function newTask() {
-    let input = document.getElementById("inputNewTask")
-    input.style.border = ''
+    let inputEl = document.getElementById("inputNewTask")
+    let value = inputEl.value.trim()
+    inputEl.style.border = ''
 
-    // validação
-    if (!input.value) {
-        input.style.border = '1px solid red'
+    if (!value) {
+        // se está editando e não digitou nada, volta o valor original
+        if (editingIndex !== null) {
+            let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+            values.splice(editingIndex, 0, { name: editingValue })
+            editingIndex = null
+            editingValue = ''
+            localStorage.setItem(localStoragekey, JSON.stringify(values))
+            showValues()
+        }
+        inputEl.style.border = '1px solid red'
         alert("Digite o que você quer adicionar na sua lista")
+        return
     }
-    else if (validadeIfExistNewTask()) {
-        alert("ja existe uma Task com essa descrição")
+
+    let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+
+    if (editingIndex !== null) {
+        // se está editando, salva a task modificada
+        values.splice(editingIndex, 0, { name: value })
+        editingIndex = null
+        editingValue = ''
+    } else {
+        // se não está editando, adiciona nova task
+        values.push({ name: value })
     }
-    else {
-        // increment to localStorage
-        let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
-        values.push({
-            name: input.value
-        })
-        localStorage.setItem(localStoragekey, JSON.stringify(values))
-        showValues()
-    }
-    input.value = ''
+
+    localStorage.setItem(localStoragekey, JSON.stringify(values))
+    inputEl.value = ''
+    showValues()
 }
+
+// function newTask() {
+//     let input = document.getElementById("inputNewTask")
+//     input.style.border = ''
+
+//     // validação
+//     if (!input.value) {
+//         input.style.border = '1px solid red'
+//         alert("Digite o que você quer adicionar na sua lista")
+//     }
+//     else if (validadeIfExistNewTask()) {
+//         alert("ja existe uma Task com essa descrição")
+//     }
+//     else {
+//         // increment to localStorage
+//         let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+//         values.push({
+//             name: input.value
+//         })
+//         localStorage.setItem(localStoragekey, JSON.stringify(values))
+//         showValues()
+//     }
+//     input.value = ''
+// }
 function showValues() {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
     let list = document.getElementById('to-do-list')
@@ -47,11 +83,20 @@ function showValues() {
 </li>`
     }
 } 
+
 function editValues(index) {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
-    let input = document.getElementById('inputNewTask')
-    input.value = values[index].name
-    removeItem(values[index].name)
+    let inputEl= document.getElementById('inputNewTask')
+    
+    editingIndex = index
+    editingValue = values[index].name
+    
+    inputEl.value = editingValue
+    inputEl.focus()
+
+    values.splice(index, 1)
+    localStorage.setItem(localStoragekey, JSON.stringify(values))
+    showValues()
 }
 function removeItem(index) {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
