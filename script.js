@@ -69,4 +69,4 @@ input.addEventListener('keydown', function (event) {
 })
 
 
-showValues()
+showValues()                    
