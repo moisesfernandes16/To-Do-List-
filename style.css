@@ -121,8 +121,8 @@ body {
     align-items: center;
     cursor: pointer;
     transition: .4s;
-    position: absolute;
-    left: 85%;
+    position: relative;
+    left: 95%;
 
 }
 
@@ -161,11 +161,12 @@ li {
 
     #btnEdit {
         position: absolute;
-        left: 85%;
+        left: 76%;
+        
     }
 
     #btnOk {
         position: absolute;
-        left: 68
+        left: 58%
     }
 }
