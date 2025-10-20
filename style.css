@@ -157,4 +157,15 @@ li {
         align-items: center;
         flex-wrap: wrap;
     }
+    
+#btnEdit {
+    position: absolute;
+    left: 85%;
+}
+#btnOk {
+    position: absolute;
+    left: 68
+    %;
+
+}
 }
