@@ -139,12 +139,11 @@ li {
     flex-wrap: wrap;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 370px) {
     li {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 298px;
         height: 60px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
