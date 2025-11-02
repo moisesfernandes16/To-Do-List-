@@ -77,8 +77,11 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    white-space: pre-line;
+    word-break: break-word; 
+    max-width: 250px;
+    gap: 1rem;
 }
-
 #to-do-list li:hover {
     background-color: var(--color-dark3);
     transition: .4s;
@@ -184,11 +187,12 @@ li {
 }
 
 li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space:pre-line;
+    overflow: visible;
+    text-overflow: unset;
     max-width: 500px;
-    height: 50px;
     flex-wrap: wrap;
+   
 }
+
 }
