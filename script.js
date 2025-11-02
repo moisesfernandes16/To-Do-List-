@@ -10,6 +10,42 @@ function validadeIfExistNewTask() {
     let exists = values.find(x => x.name == inputValue)
     return !exists ? false : true
 }
+function newTask() {
+    let inputEl = document.getElementById("inputNewTask")
+    let value = inputEl.value.trim()
+    inputEl.style.border = ''
+
+    if (!value) {
+        // se está editando e não digitou nada, volta o valor original
+        if (editingIndex !== null) {
+            let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+            values.splice(editingIndex, 0, { name: editingValue })
+            editingIndex = null
+            editingValue = ''
+            localStorage.setItem(localStoragekey, JSON.stringify(values))
+            showValues()
+        }
+        inputEl.style.border = '1px solid red'
+        alert("Digite o que você quer adicionar na sua lista")
+        return
+    }
+
+    let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+
+    if (editingIndex !== null) {
+        // se está editando, salva a task modificada
+        values.splice(editingIndex, 0, { name: value })
+        editingIndex = null
+        editingValue = ''
+    } else {
+        // se não está editando, adiciona nova task
+        values.push({ name: value })
+    }
+
+    localStorage.setItem(localStoragekey, JSON.stringify(values))
+    inputEl.value = ''
+    showValues()
+}
 
 function newTask() {
     let input = document.getElementById("inputNewTask")
@@ -19,6 +55,14 @@ function newTask() {
     if (!input.value) {
         input.style.border = '1px solid red'
         alert("Digite o que você quer adicionar na sua lista")
+        if (editingIndex !== null) {
+            let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+            values.splice(editingIndex, 0, { name: editingValue })
+            editingIndex = null
+            editingValue = ''
+            localStorage.setItem(localStoragekey, JSON.stringify(values))
+            showValues()
+        }
     }
     else if (validadeIfExistNewTask()) {
         alert("ja existe uma Task com essa descrição")
