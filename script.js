@@ -1,4 +1,4 @@
-let editingIndex = null 
+let editingIndex = null
 let editingValue = ''
 const localStoragekey = 'to-do-list-ma'
 const input = document.getElementById('inputNewTask')
@@ -47,29 +47,29 @@ function newTask() {
     showValues()
 }
 
-// function newTask() {
-//     let input = document.getElementById("inputNewTask")
-//     input.style.border = ''
+function newTask() {
+    let input = document.getElementById("inputNewTask")
+    input.style.border = ''
 
-//     // validação
-//     if (!input.value) {
-//         input.style.border = '1px solid red'
-//         alert("Digite o que você quer adicionar na sua lista")
-//     }
-//     else if (validadeIfExistNewTask()) {
-//         alert("ja existe uma Task com essa descrição")
-//     }
-//     else {
-//         // increment to localStorage
-//         let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
-//         values.push({
-//             name: input.value
-//         })
-//         localStorage.setItem(localStoragekey, JSON.stringify(values))
-//         showValues()
-//     }
-//     input.value = ''
-// }
+    // validação
+    if (!input.value) {
+        input.style.border = '1px solid red'
+        alert("Digite o que você quer adicionar na sua lista")
+    }
+    else if (validadeIfExistNewTask()) {
+        alert("ja existe uma Task com essa descrição")
+    }
+    else {
+        // increment to localStorage
+        let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
+        values.push({
+            name: input.value
+        })
+        localStorage.setItem(localStoragekey, JSON.stringify(values))
+        showValues()
+    }
+    input.value = ''
+}
 function showValues() {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
     let list = document.getElementById('to-do-list')
@@ -82,15 +82,18 @@ function showValues() {
 </svg></button>
 </li>`
     }
-} 
+}
 
 function editValues(index) {
     let values = JSON.parse(localStorage.getItem(localStoragekey) || "[]")
-    let inputEl= document.getElementById('inputNewTask')
-    
+    let inputEl = document.getElementById('inputNewTask')
+
+    if (editingIndex !== null) {
+        values.splice(editingIndex, 0, { name: editingValue })
+    }
     editingIndex = index
     editingValue = values[index].name
-    
+
     inputEl.value = editingValue
     inputEl.focus()
 
@@ -111,6 +114,7 @@ input.addEventListener('keydown', function (event) {
         newTask()
     }
 })
+
 
 
 showValues()                    

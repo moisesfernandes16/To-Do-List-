@@ -1,5 +1,0 @@
-{
-    "workbench.list.typeNavigationMode": "trigger",
-    "workbench.editor.enablePreviewFromCodeNavigation": false,
-    "notebook.navigation.allowNavigateToSurroundingCells": true
-}

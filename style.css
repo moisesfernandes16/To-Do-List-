@@ -101,7 +101,7 @@ body {
     cursor: pointer;
     transition: .4s;
     position: absolute;
-    left: 70%;
+    left: 50%;
 
 }
 
@@ -137,39 +137,4 @@ li {
     max-width: 500px;
     height: 50px;
     flex-wrap: wrap;
-}
-
-@media (max-width: 320px) {
-    ul{
-        display: flex;
-
-    }
-    li {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        height: 60px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-
-    #to-do-list li {
-        list-style-type: none;
-        font-size: 1.4rem;
-        text-transform: capitalize;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    #btnEdit {
-        position: absolute;
-        left: 76%;
-        
-    }
-
-    #btnOk {
-        position: absolute;
-        left: 58%
-    }
 }
